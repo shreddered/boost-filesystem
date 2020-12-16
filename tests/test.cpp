@@ -22,6 +22,20 @@ TEST(FtpAnalyzer, Stats) {
         {"otkritie", BrokerStats{47, "03934523", "20181017"}},
         {"otkritie", BrokerStats{48, "03934520", "20181018"}},
     };
+    for (const auto& record : stats) {
+        std::cout << "broker: " << record.first
+            << " account: " << record.second.account
+            << " files: " << record.second.total
+            << " lastdate: " << record.second.lastDate
+            << std::endl;
+    }
+    for (const auto& record : expected) {
+        std::cout << "broker: " << record.first
+            << " account: " << record.second.account
+            << " files: " << record.second.total
+            << " lastdate: " << record.second.lastDate
+            << std::endl;
+    }
     EXPECT_EQ(stats, expected);
 }
 
