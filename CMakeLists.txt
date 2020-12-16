@@ -34,6 +34,7 @@ find_package(Boost CONFIG REQUIRED system filesystem program_options)
 # libftp_analyzer
 add_library(libftp_analyzer
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/ftp_analyzer.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/sources/broker_stats.cpp
 )
 
 target_include_directories(libftp_analyzer
@@ -41,7 +42,7 @@ target_include_directories(libftp_analyzer
 )
 
 target_link_libraries(libftp_analyzer
-  PRIVATE Boost::system
+  PUBLIC Boost::system
   Boost::filesystem
 )
 
@@ -79,7 +80,7 @@ target_include_directories(tests
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(tests GTest::main libftp_analyzer)
+target_link_libraries(tests GTest::gtest_main libftp_analyzer)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
