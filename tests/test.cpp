@@ -479,10 +479,10 @@ otkritie balance_03934523_20181003.txt
 )");
     std::set<std::string> s1, s2;
     std::string tmp;
-    while(std::getline(ss1, tmp)) {
+    while (std::getline(ss1, tmp)) {
         s1.insert(tmp);
     }
-    while(std::getline(ss2, tmp)) {
+    while (std::getline(ss2, tmp)) {
         s2.insert(tmp);
     }
     EXPECT_EQ(s1, s2);
