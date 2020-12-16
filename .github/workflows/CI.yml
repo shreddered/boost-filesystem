@@ -26,7 +26,7 @@ jobs:
               git submodule update --init
       - name: checks
         run: 
-          docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t rusdevops/bootstrap:cpp scripts/checks.sh
+          docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t rusdevops/bootstrap-cpp scripts/checks.sh
           
           
   tests:
@@ -41,7 +41,7 @@ jobs:
               git submodule update --init
       - name: tests
         run: 
-          docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp:latest scripts/tests.sh
+          docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/tests.sh
 
 
   quality:
@@ -56,4 +56,4 @@ jobs:
       - name: quality
         run: 
           ./scripts/genenv.sh &&
-          docker run --env-file .env -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp:latest scripts/coverage.sh
+          docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/coverage.sh
