@@ -10,5 +10,3 @@ struct BrokerStats final {
     BrokerStats(std::size_t total, const std::string& account,
             const std::string& lastDate);
 }; // struct BrokerStats
-
-bool operator>(const BrokerStats& lhs, const BrokerStats& rhs);
