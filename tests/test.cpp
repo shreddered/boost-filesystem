@@ -39,21 +39,21 @@ TEST(FtpAnalyzer, Stats) {
             << std::endl;
     }
     std::set<std::string> s1, s2;
-    std::string tmp1, tmp2;
-    while (std::getline(ss1, tmp1)) {
-        s1.insert(tmp1);
+    std::string tmp;
+    while (std::getline(ss1, tmp)) {
+        s1.insert(tmp);
     }
-    while (std::getline(ss2, tmp2)) {
-        s2.insert(tmp2);
+    while (std::getline(ss2, tmp)) {
+        s2.insert(tmp);
     }
     EXPECT_EQ(s1, s2);
 }
 
 TEST(FtpAnalyzer, AnalyzerOutput) {
-    std::ostringstream ss;
+    std::stringstream ss1;
     FtpAnalyzer analyzer(boost::filesystem::current_path().string());
-    analyzer.analyze(ss);
-    EXPECT_EQ(ss.str(), std::string(
+    analyzer.analyze(ss1);
+    std::stringstream ss2(
            R"(ib balance_00100003_20180922.txt
 ib balance_00100003_20180929.txt
 ib balance_00100003_20181010.txt
@@ -476,5 +476,14 @@ otkritie balance_03934520_20180901.txt
 otkritie balance_03934520_20180907.txt
 otkritie balance_03934520_20181018.txt
 otkritie balance_03934523_20181003.txt
-)"));
+)");
+    std::set<std::string> s1, s2;
+    std::string tmp;
+    while(std::getline(ss1, tmp)) {
+        s1.insert(tmp);
+    }
+    while(std::getline(ss2, tmp)) {
+        s2.insert(tmp);
+    }
+    EXPECT_EQ(s1, s2);
 }
