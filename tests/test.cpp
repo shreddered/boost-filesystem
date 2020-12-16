@@ -6,6 +6,7 @@
 #include <ftp_analyzer.hpp>
 // STL headers
 #include <iostream>
+#include <set>
 #include <sstream>
 
 TEST(FtpAnalyzer, Stats) {
@@ -22,21 +23,30 @@ TEST(FtpAnalyzer, Stats) {
         {"otkritie", BrokerStats{47, "03934523", "20181017"}},
         {"otkritie", BrokerStats{48, "03934520", "20181018"}},
     };
+    std::stringstream ss1, ss2;
     for (const auto& record : stats) {
-        std::cout << "broker: " << record.first
+        ss1 << "broker: " << record.first
             << " account: " << record.second.account
             << " files: " << record.second.total
             << " lastdate: " << record.second.lastDate
             << std::endl;
     }
     for (const auto& record : expected) {
-        std::cout << "broker: " << record.first
+        ss2 << "broker: " << record.first
             << " account: " << record.second.account
             << " files: " << record.second.total
             << " lastdate: " << record.second.lastDate
             << std::endl;
     }
-    EXPECT_EQ(stats, expected);
+    std::set<std::string> s1, s2;
+    std::string tmp1, tmp2;
+    while (std::getline(ss1, tmp1)) {
+        s1.insert(tmp1);
+    }
+    while (std::getline(ss2, tmp2)) {
+        s2.insert(tmp2);
+    }
+    EXPECT_EQ(s1, s2);
 }
 
 TEST(FtpAnalyzer, AnalyzerOutput) {
