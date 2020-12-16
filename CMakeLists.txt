@@ -80,9 +80,13 @@ target_include_directories(tests
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_compile_definitions(tests
+  PRIVATE "TEST_FTP_PATH=\"${CMAKE_CURRENT_SOURCE_DIR}/misc\""
+)
+
 target_link_libraries(tests GTest::gtest_main libftp_analyzer)
 
-file(RENAME misc/ ${CMAKE_CURRENT_BINARY_DIR}/misc)
+# file(RENAME misc/ ${CMAKE_CURRENT_BINARY_DIR}/misc)
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
 

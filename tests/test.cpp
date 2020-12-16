@@ -10,7 +10,7 @@
 #include <sstream>
 
 TEST(FtpAnalyzer, Stats) {
-    FtpAnalyzer analyzer(boost::filesystem::current_path().string());
+    FtpAnalyzer analyzer(TEST_FTP_PATH);
     auto stats = analyzer.analyze(std::cout);
     std::multimap<std::string, BrokerStats> expected = {
         {"bcs", BrokerStats{44, "00123456", "20181014"}},
@@ -51,7 +51,7 @@ TEST(FtpAnalyzer, Stats) {
 
 TEST(FtpAnalyzer, AnalyzerOutput) {
     std::stringstream ss1;
-    FtpAnalyzer analyzer(boost::filesystem::current_path().string());
+    FtpAnalyzer analyzer(TEST_FTP_PATH);
     analyzer.analyze(ss1);
     std::stringstream ss2(
            R"(ib balance_00100003_20180922.txt
