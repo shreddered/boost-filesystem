@@ -27,7 +27,14 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     FtpAnalyzer analyzer(vm["path_to_ftp"].as<std::string>());
-    analyzer.analyze(std::cout);
+    auto stats = analyzer.analyze(std::cout);
 
+    for (const auto& record : stats) {
+        std::cout << "broker: " << record.first
+            << " account: " << record.second.account
+            << " files: " << record.second.total
+            << " lastdate: " << record.second.lastDate
+            << std::endl;
+    }
     return 0;
 }
