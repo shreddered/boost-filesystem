@@ -82,6 +82,7 @@ target_include_directories(tests
 
 target_link_libraries(tests GTest::gtest_main libftp_analyzer)
 
+file(RENAME misc/ ${CMAKE_CURRENT_BINARY_DIR}/misc)
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
 
