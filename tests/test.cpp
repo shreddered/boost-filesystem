@@ -23,7 +23,6 @@ TEST(FtpAnalyzer, Stats) {
         {"otkritie", BrokerStats{48, "03934520", "20181018"}},
     };
     EXPECT_EQ(stats, expected);
-
 }
 
 TEST(FtpAnalyzer, AnalyzerOutput) {
